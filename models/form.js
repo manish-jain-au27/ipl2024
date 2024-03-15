@@ -27,6 +27,10 @@ const formSchema = new mongoose.Schema({
     type: [String],
     required: true,
   },
+  selectedStarPlayers: {
+    type: [String], // Assuming selected star players are also represented by their names
+    required: true,
+  },
 });
 
 const Form = mongoose.model('Form', formSchema);
