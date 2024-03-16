@@ -3,7 +3,7 @@
 const Form = require('../models/form');
 
 const submitForm = async (req, res) => {
-  const { name, teamName, mobileNumber, selectedBatsmen, selectedBowlers, selectedAllRounders, starPlayer } = req.body;
+  const { name, teamName, mobileNumber, selectedBatsmen, selectedBowlers, selectedAllRounders, selectedStarPlayer } = req.body;
 
   // Validate the number of selected players
   if (
@@ -15,8 +15,8 @@ const submitForm = async (req, res) => {
   }
 
   // Validate star player selection
-  if (!starPlayer || starPlayer.length !== 1) {
-    return res.status(400).send('Please select exactly 1 star player');
+  if (!selectedStarPlayer) {
+    return res.status(400).send('Please select a star player');
   }
 
   try {
@@ -27,7 +27,7 @@ const submitForm = async (req, res) => {
       selectedBatsmen,
       selectedBowlers,
       selectedAllRounders,
-      starPlayer,
+      selectedStarPlayers: selectedStarPlayer, // Update to match the new schema
     });
     await newForm.save();
 
@@ -40,6 +40,7 @@ const submitForm = async (req, res) => {
     res.status(500).send('Server Error');
   }
 };
+
 
 
 module.exports = {

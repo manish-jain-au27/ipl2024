@@ -28,7 +28,7 @@ const formSchema = new mongoose.Schema({
     required: true,
   },
   selectedStarPlayers: {
-    type: [String], // Assuming selected star players are also represented by their names
+    type: String, // Assuming only one star player can be selected
     required: true,
   },
 });
